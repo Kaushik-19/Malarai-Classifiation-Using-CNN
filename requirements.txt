@@ -4,6 +4,5 @@ opencv_python
 Pillow
 protobuf
 scikit_image
-skimage
 streamlit
 tensorflow
