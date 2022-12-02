@@ -5,7 +5,12 @@ from skimage import transform
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-  model=tf.keras.models.load_model('model.h5')
+  import subprocess
+  if not os.path.isfile('model.h5'):
+    subprocess.run(['curl --output model.h5 "https://media.githubusercontent.com/media/Kaushik-19/Malarai-Classifiation-Using-CNN/main/sep_5.h5"'], shell=True)
+    Replace model = tf.keras.models.load_model('sep_5.h5', compile=False) with
+    model = tf.keras.models.load_model('model.h5', compile=False)
+  #model=tf.keras.models.load_model('model.h5')
   return model
 with st.spinner('Model is being loaded..'):
   model=load_model()
