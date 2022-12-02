@@ -3,12 +3,17 @@ import tensorflow as tf
 from skimage import transform
 
 
-@st.cache(allow_output_mutation=True)
-def load_model():
-    model = tf.keras.models.load_model('model.h5', compile=False)
-    return model
+# @st.cache(allow_output_mutation=True)
+# def load_model():
+#     model = tf.keras.models.load_model('model.h5', compile=False)
+#     return model
   #model=tf.keras.models.load_model('model.h5')
 #return model
+@st.experimental_singleton
+def load_model():
+    if not os.path.isfile('model.h5'):
+        urllib.request.urlretrieve('https://github.com/snehankekre/NGM-APP/raw/main/Breccia_Rock_Classifier.h5', 'model.h5')
+    return tensorflow.keras.models.load_model('model.h5')
 with st.spinner('Model is being loaded..'):
   model=load_model()
 
